@@ -90,6 +90,17 @@ class LinkedList:
             self.tail = None
         return temp
     
+    def get(self, index):
+        '''
+        Gets and returns the value of the node at a given index
+        '''
+        if index < 0 or index >= self.length:
+            return None
+        temp = self.head
+        for _ in range(index):
+            temp = temp.next
+        return temp.value
+
     def print_list(self):
         '''
         This method prints every node's data.
