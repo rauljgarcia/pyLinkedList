@@ -92,14 +92,25 @@ class LinkedList:
     
     def get(self, index):
         '''
-        Gets and returns the value of the node at a given index
+        Get and returns a pointer to the node at a given index
         '''
         if index < 0 or index >= self.length:
             return None
         temp = self.head
         for _ in range(index):
             temp = temp.next
-        return temp.value
+        return temp
+    
+    def set_value(self, index, value):
+        '''
+        Set a value to a node at a given index in the linked list
+        '''
+        temp = self.get(index)
+        if temp:
+            temp.value = value
+            return True
+        return False
+
 
     def print_list(self):
         '''
@@ -111,3 +122,5 @@ class LinkedList:
             str += (f'{temp.value}->')
             temp = temp.next
         print(f'\t   {str}'+ 'None')
+
+
