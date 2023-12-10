@@ -111,6 +111,24 @@ class LinkedList:
             return True
         return False
 
+    def insert(self, index, value):
+        '''
+        Insert data at a given index in the linked list 
+        '''
+        if index < 0 or index > self.length:
+            return None
+        if index == 0:
+            return self.prepend(value)
+        if index == self.length:
+            return self.append(value)
+        new_node = Node(value)
+        temp = self.get(index-1)
+        new_node.next = temp.next
+        temp.next = new_node
+        self.length += 1
+        return True
+        
+
 
     def print_list(self):
         '''
@@ -122,5 +140,3 @@ class LinkedList:
             str += (f'{temp.value}->')
             temp = temp.next
         print(f'\t   {str}'+ 'None')
-
-
