@@ -21,9 +21,10 @@ class LinkedList:
         Insert data to the end of the linked list.
         
         Parameters:
-        value: data type of node
+        value: appropriate data type being added
         
-        Returns: True 
+        Returns: 
+        True: bool to show data was successfuly added
         '''
         new_node = Node(value)
         if self.length == 0:
@@ -40,9 +41,10 @@ class LinkedList:
         Insert data to the beginning of the linked list.
 
         Parameters:
-        value: data type of node
+        value: appropriate data type being added
         
-        Returns: True 
+        Returns:
+        True: bool to show data was successfuly added
         '''
         new_node = Node(value)
         if self.length == 0:
@@ -57,6 +59,11 @@ class LinkedList:
     def pop_first(self):
         '''
         Remove the first node and return the node's data.
+
+        Parameters: none
+
+        Returns: 
+        temp: pointer to the data that was removed
         '''
         if self.length == 0:
             return None
@@ -74,6 +81,11 @@ class LinkedList:
     def pop(self):
         '''
         Remove the last node and return the node's data.
+
+        Parameters: none
+
+        Returns:
+        temp: pointer to the data that was removed
         '''
         if self.length == 0:
             return None
@@ -92,7 +104,13 @@ class LinkedList:
     
     def get(self, index):
         '''
-        Get and returns a pointer to the node at a given index
+        Get and return a pointer to the data at a given index.
+
+        Parameters:
+        index: integer of the index to get
+
+        Returns:
+        temp: pointer to the data
         '''
         if index < 0 or index >= self.length:
             return None
@@ -103,7 +121,15 @@ class LinkedList:
     
     def set_value(self, index, value):
         '''
-        Set a value to a node at a given index in the linked list
+        Set a new value to the data at a given index.
+
+        Parameters:
+        index: integer, the index of the data being modified
+        value: appropriate value being set to the data at the index
+
+        Returns:
+        True: bool to show data was successfuly set
+        False: bool to show data was not sucessfully set
         '''
         temp = self.get(index)
         if temp:
@@ -114,8 +140,15 @@ class LinkedList:
     def insert(self, index, value):
         '''
         Insert data at a given index in the linked list 
+
+        Parameters:
+        index: integer, index in the list where the data is added
+        value: appropriate value being set to the data
+
+        Returns:
+        True: bool to show data was successfuly added
         '''
-        if index < 0 or index > self.length:
+        if index < 0 or index >= self.length:
             return None
         if index == 0:
             return self.prepend(value)
@@ -128,11 +161,53 @@ class LinkedList:
         self.length += 1
         return True
         
+    def remove(self, index):
+        '''
+        Delete data at a given index in the linked list.
 
+        index: integer, index in the list where the data is removed
+
+        temp: pointer to the data being removed
+        '''
+        if index < 0 or index >= self.length:
+            return None
+        if index == 0:
+            return self.pop_first()
+        pre = self.get(index-1)
+        temp = pre.next
+        pre.next = temp.next
+        temp.next = None
+        self.length -= 1
+        return temp
+
+    def reverse(self):
+        '''
+        Reverse the order of the data in the linked list.
+
+        Parameters: none
+
+        Returns:
+        True: Bool to show linked list was sucessfully reversed
+        '''
+        temp = self.head
+        self.head = self.tail
+        self.tail = temp
+        before = None
+        after = temp.next
+        for _ in range(self.length):
+            after = temp.next
+            temp.next = before
+            before = temp
+            temp = after
+        return True
 
     def print_list(self):
         '''
-        This method prints every node's data.
+        Print the linked list in order.
+
+        Parameters: none
+
+        Returns: None
         '''
         temp = self.head
         str = ''
