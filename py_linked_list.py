@@ -93,7 +93,7 @@ class LinkedList:
         pre = self.head
         while temp.next:
             pre = temp
-            temp = temp.next
+            temp = temp.next    
         self.tail = pre
         self.tail.next = None
         self.length -= 1
@@ -189,16 +189,16 @@ class LinkedList:
         Returns:
         True: Bool to show linked list was sucessfully reversed
         '''
-        temp = self.head
+        curr = self.head
         self.head = self.tail
-        self.tail = temp
-        before = None
-        after = temp.next
-        for _ in range(self.length):
-            after = temp.next
-            temp.next = before
-            before = temp
-            temp = after
+        self.tail = curr
+        pre = None
+        next = None
+        while curr is not None:
+            next = curr.next
+            curr.next = pre
+            pre = curr
+            curr = next
         return True
 
     def print_list(self):
@@ -215,3 +215,19 @@ class LinkedList:
             str += (f'{temp.value}->')
             temp = temp.next
         print(f'\t   {str}'+ 'None')
+
+    def find_middle_node(self):
+        '''
+        Find and return a pointer for middle node of the linked list.
+
+        Parameters: none
+
+        Returns:
+        temp: pointer to the data
+        '''
+        fast_ptr = self.head
+        slow_ptr = self.head
+        while fast_ptr is not None and fast_ptr.next is not None:
+            slow_ptr = slow_ptr.next
+            fast_ptr = fast_ptr.next.next
+        return slow_ptr
