@@ -231,6 +231,26 @@ class LinkedList:
             slow_ptr = slow_ptr.next
             fast_ptr = fast_ptr.next.next
         return slow_ptr
+    
+def has_cycle(ll):
+    '''
+    Function takes a linked list and checks if it has a cycle
+
+    Parameters:
+    ll: linked list
+
+    Returns:
+    True: if the linked list has a cycle
+    False: if the linked list does not have a cycle
+    '''
+    fast_ptr = ll.head
+    slow_ptr = ll.head
+    while fast_ptr is not None and fast_ptr.next is not None:
+        slow_ptr = slow_ptr.next
+        fast_ptr = fast_ptr.next.next
+        if fast_ptr == slow_ptr:
+            return True
+    return False
 
 def find_kth_from_end(ll, k):
     '''
@@ -250,7 +270,6 @@ def find_kth_from_end(ll, k):
         if fast_ptr is None:
             return None
         fast_ptr = fast_ptr.next
-
     while fast_ptr is not None:
         slow_ptr = slow_ptr.next
         fast_ptr = fast_ptr.next
