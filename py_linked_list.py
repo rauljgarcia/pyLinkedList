@@ -231,15 +231,6 @@ class LinkedList:
             slow_ptr = slow_ptr.next
             fast_ptr = fast_ptr.next.next
         return slow_ptr
-    
-
-
-my_ll = LinkedList(4)
-my_ll.append(6)
-my_ll.append(8)
-my_ll.append(10)
-my_ll.append(12)
-my_ll.print_list()
 
 def find_kth_from_end(ll, k):
     '''
@@ -253,10 +244,14 @@ def find_kth_from_end(ll, k):
      Returns:
      Pointer to the k-th node from end of the linked list
     '''
-    if ll.get(k) is None:
-        return None
-    ll.reverse()
-    return(ll.get(k-1).value)
+    fast_ptr = ll.head
+    slow_ptr = ll.head
+    for i in range(k):
+        if fast_ptr is None:
+            return None
+        fast_ptr = fast_ptr.next
 
-print(find_kth_from_end(my_ll, 4))
-    
+    while fast_ptr is not None:
+        slow_ptr = slow_ptr.next
+        fast_ptr = fast_ptr.next
+    return slow_ptr
