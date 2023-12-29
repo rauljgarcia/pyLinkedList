@@ -257,7 +257,7 @@ class LinkedList:
         prev1.next = dummy2.next
         prev2.next = None
         dummy1 = dummy2 = prev1 = prev2 = None
-        
+
 def has_cycle(ll):
     '''
     Function takes a linked list and checks if it has a cycle
@@ -300,16 +300,3 @@ def find_kth_from_end(ll, k):
         slow_ptr = slow_ptr.next
         fast_ptr = fast_ptr.next
     return slow_ptr
-
-
-myll = LinkedList(3)
-myll.append(8)
-myll.append(5)
-myll.append(10)
-myll.append(2)
-myll.append(1)
-
-myll.print_list()
-
-myll.partition_list(5)
-myll.print_list()
