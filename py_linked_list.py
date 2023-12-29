@@ -232,6 +232,32 @@ class LinkedList:
             fast_ptr = fast_ptr.next.next
         return slow_ptr
     
+    def partition_list(self, k):
+        '''
+        Partition a linked list at x and maintain its relative order
+
+        Parameters:
+        k: the partitioning value
+
+        Returns: None
+        '''
+        if self.head is None:
+            return None
+        dummy1 = dummy2 = Node(0) 
+        prev1, prev2 = dummy1, dummy2
+        cur = self.head
+        while cur is not None:
+            if cur.value < k:
+                prev1.next = cur
+                prev1 = cur
+            else:
+                prev2.next = cur
+                prev2 = cur
+            cur = cur.next
+        prev1.next = dummy2.next
+        prev2.next = None
+        dummy1 = dummy2 = prev1 = prev2 = None
+        
 def has_cycle(ll):
     '''
     Function takes a linked list and checks if it has a cycle
@@ -274,3 +300,16 @@ def find_kth_from_end(ll, k):
         slow_ptr = slow_ptr.next
         fast_ptr = fast_ptr.next
     return slow_ptr
+
+
+myll = LinkedList(3)
+myll.append(8)
+myll.append(5)
+myll.append(10)
+myll.append(2)
+myll.append(1)
+
+myll.print_list()
+
+myll.partition_list(5)
+myll.print_list()
